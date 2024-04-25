@@ -27,6 +27,10 @@ const ProductItem = ({ params }: { params: { product_id: string } }) => {
 		<div>
 			ProductItem
 			<p>ID: {params.product_id}</p>
+			<div>
+				<p>NAME: {product.data?.name}</p>
+				<p>PRICE: {product.data?.price}</p>
+			</div>
 			<p>
 				<Link href={`/products/${params.product_id}/reviews`}>Reviews</Link>
 			</p>
