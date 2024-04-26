@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import ProductsItem from '../../components/ProductsItem';
+import ProductsItem from '@/components/ProductsItem';
 import axios from 'axios';
-import { getProducts } from '../../server/actions/get-products';
+import { getProducts } from '@/server/actions/get-products';
 
 type Product = {
 	id: number;

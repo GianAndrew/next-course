@@ -1,6 +1,6 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import ProductItem from '../../../components/ProductItem';
-import { getProduct } from '../../../server/actions/getProduct';
+import ProductItem from '@/components/ProductItem';
+import { getProduct } from '@/server/actions/getProduct';
 
 const Product = async ({ params }: { params: { product_id: string } }) => {
 	const queryClient = new QueryClient();

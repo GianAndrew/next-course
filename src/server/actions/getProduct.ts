@@ -7,7 +7,7 @@ const products = [
 	{ id: 6, name: 'ram', price: 1000, stock: 10 },
 ];
 
-export const getProduct = (params: { product_id: string }) => {
+export const getProduct = async (params: { product_id: string }) => {
 	const product = products.find((p) => p.id === parseInt(params.product_id));
 	return product;
 };

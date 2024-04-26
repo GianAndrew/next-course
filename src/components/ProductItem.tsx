@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
-import { getProduct } from '../server/actions/getProduct';
+import { getProduct } from '@/server/actions/getProduct';
 
 const ProductItem = ({ params }: { params: { product_id: string } }) => {
 	const product = useQuery({
