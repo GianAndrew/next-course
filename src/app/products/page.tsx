@@ -1,8 +1,7 @@
-'use client';
-import Link from 'next/link';
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import ProductsItem from '../../components/ProductsItem';
 import axios from 'axios';
+import { getProducts } from '../../server/actions/get-products';
 
 type Product = {
 	id: number;
@@ -11,35 +10,18 @@ type Product = {
 	stock: number;
 };
 
-const Products = () => {
-	const products = useQuery({
+const Products = async () => {
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery({
 		queryKey: ['products'],
-		queryFn: async () => {
-			try {
-				const response = await axios.get('/api/product');
-				return response.data.products;
-			} catch (error) {
-				throw new Error(error as string);
-			}
-		},
+		queryFn: getProducts,
 	});
-
-	if (products.isLoading && products.isPending) return <div>Loading...</div>;
-
-	if (products.isPaused) {
-		return <p>The server is offline</p>;
-	}
 
 	return (
 		<div>
-			Products
-			<p className='flex flex-col'>
-				{products.data?.map((product: Product) => (
-					<Link key={product.id} href={`/products/${product.id}`} scroll={false}>
-						{product.name}
-					</Link>
-				))}
-			</p>
+			<HydrationBoundary state={dehydrate(queryClient)}>
+				<ProductsItem />
+			</HydrationBoundary>
 		</div>
 	);
 };
