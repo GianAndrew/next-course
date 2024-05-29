@@ -9,6 +9,7 @@ const options = [
 	{ label: 'Fourth', value: 4 },
 	{ label: 'Fifth', value: 5 },
 ];
+
 const SelectPage = () => {
 	const [value, setValue] = useState<SelectOption>();
 
